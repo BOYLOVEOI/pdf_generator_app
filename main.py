@@ -37,9 +37,13 @@ pdf.set_font(family = "Times", style = "b", size = 24)
 
 # REMEMBER to get on a row by row basis, we can utilize the pandas .iterows() method (returns the contents of the row and index of the row as a tuple)
 for index, row in df.iterrows():
-    print(index)
     pdf.add_page()
     pdf.cell(w=0, h=12, ln=1, align="L", border=0, txt=row["Topic"])
+    # Setting the font's color to black  RGB (255,255,255)
+    pdf.set_text_color(r=255, g=255, b=255)
+    # Adding a break line after the title
+    # pdf.line requires 4 parameters -> x1 and y1 (the coordinates for the starting point of the line) and x2 and y2 (coordinates for endpoint of the line)
+    pdf.line(10, 21, 200, 21)
 
     for pages in range(row["Pages"]-1):
         pdf.add_page()
